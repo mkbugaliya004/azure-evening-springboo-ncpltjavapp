@@ -1,9 +1,7 @@
-FROM eclipse-temurin:21-jre
+FROM jetty:11-jdk17
 
-WORKDIR /app
+ENV WAR_FILE=petclinic.war
 
-COPY target/spring-petclinic-4.0.0-SNAPSHOT.jar app.jar
+COPY target/${WAR_FILE} /var/lib/jetty/webapps/ROOT.war
 
 EXPOSE 8080
-
-ENTRYPOINT ["java", "-jar", "app.jar"]
