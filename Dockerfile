@@ -1,10 +1,9 @@
-FROM jetty:11-jdk17
+FROM eclipse-temurin:21-jre
 
-# Set environment variable (optional, for clarity)
-ENV WAR_FILE petclinic.war
+WORKDIR /app
 
-# Copy your WAR file into Jetty’s webapps directory
-COPY target/${WAR_FILE} /var/lib/jetty/webapps/ROOT.war
+COPY target/spring-petclinic-4.0.0-SNAPSHOT.jar app.jar
 
-# Expose Jetty’s default port changing the code 
 EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
